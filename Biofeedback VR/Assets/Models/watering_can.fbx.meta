@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: b8e9d1ce0fbab41a484f523231f8aaa8
+guid: aba7a24b39f2a4454b24be8eaa6eee76
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    2186277476908879412: ImportLogs
+    100000: //RootNode
+    400000: //RootNode
+    2100000: phong1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCube5
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -81,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
