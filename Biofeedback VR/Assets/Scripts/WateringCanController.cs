@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/* Created by Josh. Controls scale and color of an experimental sphere based on the user's EEG data. */
-public class SphereController : MonoBehaviour {
+/* Created by Josh. Controls the tilt of the watering can based on the user's EEG data. */
+public class WateringCanController : MonoBehaviour {
 	public MuseDataHandler M;
 	public Text EEGText;
 	float EEGDataVal;
@@ -11,22 +11,21 @@ public class SphereController : MonoBehaviour {
 
 	float bufferDelta; // Stores speed at which sphere grows/shrinks
 
-	private float sphereScale;
+	private float wateringCanTilt;
 
 	// Use this for initialization
 	void Start () {
-		sphereScale = 1;
+		wateringCanTilt = 0;
 		EEGDataVal = 0;
 		EEGBufferedDataVal = 0;
-		bufferDelta = 0.03f;
+		bufferDelta = 0.008f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		RecieveAndBufferData();
 		DisplayData();
-		UpdateSphereScale();
-		UpdateSphereColor();
+		UpdateTilt();
 	}
 
 	void RecieveAndBufferData() {
@@ -59,20 +58,11 @@ public class SphereController : MonoBehaviour {
 		}
 	}
 
-	void UpdateSphereScale() {
-		// Random scaled value
-		float newScale = 1f + EEGBufferedDataVal * 2f;
+	void UpdateTilt() {
+		// Update new tilt based on eeg value
+		float newTilt = 1f + EEGBufferedDataVal * 30f;
 
-		// Set new scale
-		this.transform.localScale = new Vector3(newScale, newScale, newScale);
-	}
-
-	void UpdateSphereColor() {
-		//Fetch the Renderer from the GameObject
-        Renderer rend = this.GetComponent<Renderer>();
-
-		Color c = new Color(EEGBufferedDataVal / 2f, EEGBufferedDataVal / 2f, 0.6f + EEGBufferedDataVal / 2f, 1);
-        //Set the main Color of the Material
-        rend.material.color = c;
+		// Set new tilt
+		this.transform.eulerAngles = new Vector3(1 + newTilt, 0, 0);
 	}
 }
