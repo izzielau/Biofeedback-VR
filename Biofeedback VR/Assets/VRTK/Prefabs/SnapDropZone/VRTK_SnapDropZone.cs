@@ -116,6 +116,7 @@ namespace VRTK
         protected bool[] clonedObjectColliderStates = new bool[0];
 
         protected bool willSnap = false;
+        //changed protected to public
         protected bool isSnapped = false;
         protected bool wasSnapped = false;
         protected bool isHighlighted = false;
@@ -132,6 +133,11 @@ namespace VRTK
         protected const string HIGHLIGHT_OBJECT_NAME = "HighlightObject";
         protected const string HIGHLIGHT_EDITOR_OBJECT_NAME = "EditorHighlightObject";
 
+        //added this to check if isSnapped
+        public bool checkSnap()
+        {
+            return isSnapped;
+        }
         public virtual void OnObjectEnteredSnapDropZone(SnapDropZoneEventArgs e)
         {
             if (ObjectEnteredSnapDropZone != null)
