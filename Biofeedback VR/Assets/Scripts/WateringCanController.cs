@@ -18,7 +18,7 @@ public class WateringCanController : MonoBehaviour {
 		wateringCanTilt = 0;
 		EEGDataVal = 0;
 		EEGBufferedDataVal = 0;
-		bufferDelta = 0.008f;
+		bufferDelta = 0.004f;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,7 @@ public class WateringCanController : MonoBehaviour {
 	void RecieveAndBufferData() {
 		try {
 			// Store data from muse data handler into local variable
-			EEGDataVal = M.GetNormalizedEEGData();
+			EEGDataVal = M.GetEEGData();
 		} catch (Exception e) {
 			Debug.LogWarning("Failed to read EEG data.");
 			Debug.LogWarning(e);
@@ -52,7 +52,7 @@ public class WateringCanController : MonoBehaviour {
 	void DisplayData() {
 		try {
 			if (EEGText) {
-				EEGText.text = "EEG: " + M.GetEEGData();
+				EEGText.text = "Gamma: " + M.GetEEGData();
 			}
 		} catch (Exception e) {
 		}
@@ -60,7 +60,7 @@ public class WateringCanController : MonoBehaviour {
 
 	void UpdateTilt() {
 		// Update new tilt based on eeg value
-		float newTilt = 1f + EEGBufferedDataVal * 30f;
+		float newTilt = 1f + EEGBufferedDataVal * 100f;
 
 		// Set new tilt
 		this.transform.eulerAngles = new Vector3(1 + newTilt, 0, 0);

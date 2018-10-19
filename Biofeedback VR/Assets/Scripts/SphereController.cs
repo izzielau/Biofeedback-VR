@@ -32,7 +32,7 @@ public class SphereController : MonoBehaviour {
 	void RecieveAndBufferData() {
 		try {
 			// Store data from muse data handler into local variable
-			EEGDataVal = M.GetNormalizedEEGData();
+			EEGDataVal = M.GetEEGData();
 		} catch (Exception e) {
 			Debug.LogWarning("Failed to read EEG data.");
 			Debug.LogWarning(e);
