@@ -27,12 +27,12 @@ public class MuseDataHandler : MonoBehaviour {
 	void Start () {
 		// Currently listens for general eeg data values.
 		// Other data can be listened to through addresses found here: http://developer.choosemuse.com/tools/available-data
-		osc.SetAddressHandler("/muse/eeg", OnReceiveEEG);
+		osc.SetAddressHandler("/muse/elements/gamma_relative", OnReceiveEEG);
 	}
 
 	void OnReceiveEEG(OscMessage message) {
 		// Get EEG data from message
-		museDataVar = message.GetFloat(0);
+		museDataVar = (message.GetFloat(0) + message.GetFloat(1) + message.GetFloat(2) + message.GetFloat(3)) / 4f;
 
 		// Update min and max values if needed
 		if (museDataVar < minVal) {
